@@ -39,8 +39,8 @@ app.get('/races', function(req, res){
 })
 
 app.post('/new/race', function(req, res){
+	console.log(req.body);
 	let newRace = new Race(req.body)
-	console.log(newRace);
 
 	// random name here
 	var randomCheese = names1[Math.floor(Math.random()*names1.length)];
@@ -48,9 +48,17 @@ app.post('/new/race', function(req, res){
 
 	let raceName = "The ${randomCheese} ${randomRace}"
 
+	newRace.raceName = raceName;
+
+	console.log(newRace);
+
 	newRace.save(function(err){
-		if(err){ res.json({error: "error"})}
-		else{ res.json({message: "success!"})}
+		if(err){ 
+			console.log(err);
+			res.json({error: "error"})
+		}else{ 
+			res.json({message: "success!"})
+		}
 	})
 
 })
