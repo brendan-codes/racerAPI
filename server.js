@@ -29,7 +29,7 @@ app.post('/new/race', function(req, res){
 
 
 
-	console.log(req.bdy)
+	console.log(req.body)
 
 	res.json({message: "You added a race!"})
 })
