@@ -13,8 +13,8 @@ mongoose.connect('mongodb://localhost/RaceR1');
 
 let RaceSchema = new mongoose.Schema({
 	raceName: String,
-	milesDistance: Number,
-	metersDistance: Number,
+	milesDistance: String,
+	metersDistance: String,
 	startLat: Number,
 	startLong: Number,
 	endLat: Number,
@@ -36,6 +36,15 @@ let Race = mongoose.model('Race', RaceSchema);
 app.get('/races', function(req, res){
 	console.log('YOU RACES!')
 	res.json({message: "All races!"})
+
+	Race.find({}, function(err, results){
+		if(err){
+			console.log(err)
+			res.json({err: "error!"})
+		}else{
+			res.json(results)
+		}
+	})
 })
 
 app.post('/new/race', function(req, res){
@@ -46,7 +55,7 @@ app.post('/new/race', function(req, res){
 	var randomCheese = names1[Math.floor(Math.random()*names1.length)];
 	var randomRace = names2[Math.floor(Math.random()*names2.length)];
 
-	let raceName = "The ${randomCheese} ${randomRace}"
+	let raceName = `The ${randomCheese} ${randomRace}`
 
 	newRace.raceName = raceName;
 
