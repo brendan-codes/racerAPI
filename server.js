@@ -47,6 +47,39 @@ app.get('/races', function(req, res){
 	})
 })
 
+app.get('/testjson', function(req, res){
+
+
+
+	var data = {
+			    "success": {
+			        "total": 1
+			    },
+			    "contents": {
+			        "quotes": [
+			            {
+			                "quote": "Life is 10% what happens to us and 90% how we react to it.",
+			                "length": "58",
+			                "author": "Dennis P. Kimbro",
+			                "tags": [
+			                    "inspire",
+			                    "life",
+			                    "react"
+			                ],
+			                "category": "inspire",
+			                "date": "2018-01-23",
+			                "permalink": "https://theysaidso.com/quote/Rgr8XkxeCnH360fvmK5YIgeF/dennis-p-kimbro-life-is-10-what-happens-to-us-and-90-how-we-react-to-it",
+			                "title": "Inspiring Quote of the day",
+			                "background": "https://theysaidso.com/img/bgs/man_on_the_mountain.jpg",
+			                "id": "Rgr8XkxeCnH360fvmK5YIgeF"
+			            }
+			        ],
+			        "copyright": "2017-19 theysaidso.com"
+			    }
+			}
+	res.json(data);
+})
+
 app.post('/new/race', function(req, res){
 	console.log(req.body);
 	let newRace = new Race(req.body)
